@@ -38,7 +38,7 @@ public:
 	{
 		return _size;
 	}
-	bool Empty()
+	bool empty()
 	{
 		if(_size==0)
 			return true;
@@ -63,7 +63,7 @@ public:
 	}
 	void pop_back()
 	{
-		--size;
+		--_size;
 		if(_capacity>=4*_size)
 		{
 			_capacity=_capacity/4;
@@ -82,9 +82,15 @@ public:
 	}
 	void resize(int n)
 	{
-		_capacity=max(n,_capacity);
+		if(n>_capacity)
+			_capacity=n;
 		T* temp=new T[_capacity];
-		for(int i=0;i<min(n,_size);++i)
+		int g;
+		if(n>_size)
+			g=_size;
+		else
+			g=n;
+		for(int i=0;i<g;++i)
 		{
 			temp[i]=_data[i];
 		}
